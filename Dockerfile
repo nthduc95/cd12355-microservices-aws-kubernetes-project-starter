@@ -1,13 +1,24 @@
-FROM python:3.10-slim-buster
+FROM python:3.7.3-stretch
 
-WORKDIR /src
+## Step 1:
+# Create a working directory
+WORKDIR /app
 
-COPY ./analytics/requirements.txt requirements.txt
+## Step 2:
+# Copy source code to working directory
+COPY ./analytics/. /app
 
+## Step 3:
+# Install packages from requirements.txt
 RUN apt update -y && apt install -y build-essential libpq-dev
 
-RUN pip install -r requirements.txt
+RUN pip install --upgrade --no-cache-dir pip && \
+pip install --no-cache-dir -r requirements.txt
 
-COPY ./analytics .
+## Step 4:
+# Expose port 80
+EXPOSE 80
 
-CMD python app.py
+## Step 5:
+# Run app.py at container launch
+CMD ["python", "/app/app.py"]
