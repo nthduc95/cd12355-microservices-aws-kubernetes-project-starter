@@ -10,8 +10,6 @@ COPY ./analytics/. /app
 
 ## Step 3:
 # Install packages from requirements.txt
-RUN apt update -y && apt install -y build-essential libpq-dev
-
 RUN pip install --upgrade --no-cache-dir pip && \
 pip install --no-cache-dir -r requirements.txt
 
