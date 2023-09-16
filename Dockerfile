@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/python:3.7-stretch
+FROM public.ecr.aws/docker/library/python:3.7 as build
 
 ## Step 1:
 # Create a working directory
