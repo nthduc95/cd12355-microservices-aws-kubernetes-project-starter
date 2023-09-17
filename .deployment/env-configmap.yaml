@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
  name: env-configmap
 data:
-  DB_USERNAME: postgre
-  DB_PASSWORD: W03LDczEz7
+  DB_USERNAME: postgres
+  DB_HOST: '172.31.44.15'

@@ -6,9 +6,9 @@ metadata:
     app: app-api
 spec: 
   ports:
-    - name: "5152"
-      port: 5152
-      targetPort: 5152
+    - name: "5153"
+      port: 5153
+      targetPort: 515
       protocol: TCP
   selector:
-    app: app-api
+    app.kubernetes.io/name: app-api
