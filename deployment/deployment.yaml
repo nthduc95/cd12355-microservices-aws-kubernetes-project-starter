@@ -38,6 +38,8 @@ spec:
             memory: "2048Mi"
             cpu: "500m"
         envFrom:
+          - secretRef:
+              name: env-secret
           - configMapRef:
               name: env-configmap
         ports:
