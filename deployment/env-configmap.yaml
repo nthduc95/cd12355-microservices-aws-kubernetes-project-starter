@@ -4,4 +4,4 @@ metadata:
  name: env-configmap
 data:
   DB_USERNAME: postgres
-  DB_HOST: '172.31.44.15'
+  DB_HOST: '172.31.34.128'

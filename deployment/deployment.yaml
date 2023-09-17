@@ -16,18 +16,18 @@ spec:
     spec:
       containers:
       - name: app-api
-        image: 596763631907.dkr.ecr.us-east-1.amazonaws.com/devpos-project3:0.0.1
+        image: 596763631907.dkr.ecr.us-east-1.amazonaws.com/devpos-project3:0.0.4
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
             path: /health_check
-            port: 5152
+            port: 5153
           initialDelaySeconds: 5
           timeoutSeconds: 2
         readinessProbe:
           httpGet:
             path: /readiness_check
-            port: 5152
+            port: 5153
           initialDelaySeconds: 5
           timeoutSeconds: 5
         resources:
@@ -41,4 +41,4 @@ spec:
           - configMapRef:
               name: env-configmap
         ports:
-          - containerPort: 5152
+          - containerPort: 5153
