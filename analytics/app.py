@@ -21,7 +21,10 @@ def health_check():
 @app.route("/readiness_check")
 def readiness_check():
     try:
-        count = db.session.query(Token).count()
+        count = db.session.execute(text("""
+        SELECT Count(*)         AS count
+        FROM   tokens
+        """))
     except Exception as e:
         app.logger.error(e)
         return "failed", 500
@@ -50,8 +53,19 @@ def get_daily_visits():
 
 @app.route("/api/reports/daily_usage", methods=["GET"])
 def daily_visits():
-    return jsonify(get_daily_visits)
+    result = db.session.execute(text("""
+        SELECT Date(created_at) AS date,
+            Count(*)         AS visits
+        FROM   tokens
+        WHERE  used_at IS NOT NULL
+        GROUP  BY Date(created_at)
+        """))
 
+    response = {}
+    for row in result:
+        response[str(row[0])] = row[1]
+    
+    return jsonify(response)
 
 @app.route("/api/reports/user_visits", methods=["GET"])
 def all_user_visits():
